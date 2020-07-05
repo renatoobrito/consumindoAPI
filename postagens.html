@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+	<link rel="stylesheet" href="style.css" />
+	<title>Postagens</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-info conter">
+		<ul class="navbar-nav m-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="index.html">HOME <span class="sr-only">(current)</span></a>
+			</li>
+			<li>
+				<a class="nav-link active" href="albums.html">ALBUMS<span class="sr-only">(current)</span></a>
+			</li>
+			<li>
+				<a class="nav-link active" href="todo.html">ToDo's<span class="sr-only">(current)</span></a>
+			</li>
+		</ul>
+	</nav>
+	<h2 class="text-center m-4">Postagens</h2>
+	<div class="container">
+		<a href="#" class="btn btn-info m-4" id="carregar">Carregar Posts</a>
+		<div id="lista"></div>
+	</div>
+
+	<script>
+		const carregarPosts = document.querySelector('#carregar').addEventListener('click', carregarApi)
+
+		function carregarApi() {
+			const getPosts = new XMLHttpRequest();
+
+			getPosts.open('GET', 'https://jsonplaceholder.typicode.com/posts', true)
+
+			getPosts.onload = function () {
+				if (this.status === 200) {
+					const resposta = JSON.parse(this.responseText)
+
+					let conteudo = '';
+					resposta.forEach(function (post) {
+						conteudo += `<h4>UserID: ${post.userId}</h4><p><strong>ID:</strong> ${post.id}</p><p><strong>Title:</strong> ${post.title}</p><p><strong>Body:</strong> ${post.body}</p><hr/>`;
+					});
+					document.getElementById('lista').innerHTML = conteudo
+				}
+			}
+			getPosts.send()
+		}
+	</script>
+</body>
+
+</html>
