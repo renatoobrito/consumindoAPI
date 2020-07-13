@@ -26,6 +26,7 @@
 	</nav>
 	<h2 class="text-center m-4">Postagens</h2>
 	<div class="container">
+<<<<<<< HEAD
 		<a href="#" class="btn btn-info m-4" id="carregar">Carregar Posts</a>
 		<div id="lista"></div>
 	</div>
@@ -51,6 +52,48 @@
 			}
 			getPosts.send()
 		}
+=======
+		<div id="users"></div>
+	</div>
+
+	<script>
+		const div = document.getElementById('users')
+		const url = 'https://jsonplaceholder.typicode.com/posts'
+
+		fetch(url)
+			.then((resp) => resp.json())
+			.then(function (data) {
+				return data.map(function (post) {
+					let p = document.createElement('p')
+					p.innerHTML = `<h4>UserID: ${post.userId}</h4><p><strong>ID:</strong> ${post.id}</p><p><strong>Title:</strong> ${post.title}</p><p><strong>Body:</strong> ${post.body}</p><hr/>`
+					div.appendChild(p)
+				})
+			})
+			.catch((error) => {
+				console.log('Oops!' + error)
+			})
+
+		// const carregarPosts = document.querySelector('#carregar').addEventListener('click', carregarApi)
+
+		// function carregarApi() {
+		// 	const getPosts = new XMLHttpRequest();
+
+		// 	getPosts.open('GET', 'https://jsonplaceholder.typicode.com/posts', true)
+
+		// 	getPosts.onload = function () {
+		// 		if (this.status === 200) {
+		// 			const resposta = JSON.parse(this.responseText)
+
+		// 			let conteudo = '';
+		// 			resposta.forEach(function (post) {
+		// 				conteudo += `<h4>UserID: ${post.userId}</h4><p><strong>ID:</strong> ${post.id}</p><p><strong>Title:</strong> ${post.title}</p><p><strong>Body:</strong> ${post.body}</p><hr/>`;
+		// 			});
+		// 			document.getElementById('lista').innerHTML = conteudo
+		// 		}
+		// 	}
+		// 	getPosts.send()
+		// }
+>>>>>>> 116f1c3... Refatodaro
 	</script>
 </body>
 
